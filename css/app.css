@@ -1,0 +1,36 @@
+.socialColor {
+    background-color: #D8B52B; 
+    color: white;
+  }
+  
+.socialColor:hover {
+    background-color: #B69410 !important; 
+    color: white !important;
+}
+
+.linkRegister {
+    color: silver;
+    text-decoration: none;
+}
+
+.bgColor_{
+    background-color: rgba(124, 24, 24);
+    color: white;
+}
+
+.bgColor_Menu {
+    background-color: rgba(126, 40, 40);
+    color: white;
+}
+
+.bg-img {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 0;
+}
