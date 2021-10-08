@@ -48,6 +48,7 @@
     }
 
     if(!empty($_REQUEST) && $_REQUEST['type'] == 'log_out') {
+        $objUser = new User();
         $objUser->Logout();
     }
 

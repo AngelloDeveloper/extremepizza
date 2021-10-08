@@ -10,8 +10,10 @@ function async_query(file, async, data, type) {
     $.post(path, objData, function(response) {
 
         const parse = $.parseJSON(response);
+        console.log(parse);
 
         if(parse['STATUS'] == 'ok') {
+            console.log('aqui');
             deferred.resolve(response);
         } else {
             deferred.reject(parse['ERROR_DATA']);

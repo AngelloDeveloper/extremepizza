@@ -53,7 +53,7 @@
                     ";
 
                     $this->query = mysqli_query($this->con, $this->sql);
-                    $this->result = mysqli_fetch_array($this->query);
+                    $this->result = mysqli_fetch_assoc($this->query);
                     if($this->result) {
                         return json_encode([
                             'STATUS' => 'EXIST',
@@ -71,7 +71,7 @@
                         ";
 
                         $this->query = mysqli_query($this->con, $this->sql);
-                        $this->result = mysqli_fetch_array($this->query);
+                        $this->result = mysqli_fetch_assoc($this->query);
                         if($this->result) {
                             return json_encode([
                                 'STATUS' => 'EXIST',
@@ -93,7 +93,7 @@
                     ";
 
                     $this->query = mysqli_query($this->con, $this->sql);
-                    $this->result = mysqli_fetch_array($this->query);
+                    $this->result = mysqli_fetch_assoc($this->query);
                     if($this->result) {
                         return json_encode([
                             'STATUS' => 'EXIST',
@@ -160,9 +160,9 @@
             WHERE user = '$this->users' AND password = '$this->pass'";
             
             $this->query  = mysqli_query($this->con, $this->sql);
-            $this->result = mysqli_fetch_array($this->query);
+            $this->result = mysqli_fetch_assoc($this->query);
         
-            if($this->query) {
+            if($this->result) {
                 $this->session($this->result);
                 return ['STATUS' => 'ok'];
             }       
@@ -175,17 +175,15 @@
         public function session($result=null) {
             session_start();
             
-            $i = 0;
-            foreach($result as $item) {
-                $_SESSION[$i] = $item;
-                $i++;
+            foreach($result as $key => $value) {
+                $_SESSION[$key] = $value;
             }
         }
 
         public function sessionDestroy() {
             session_start();
             session_destroy();
-            header('Location: index.php');
+            header('Location: ../index.php');
         }
 
         public function encrypt($value=null) {

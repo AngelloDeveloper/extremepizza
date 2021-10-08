@@ -18,7 +18,7 @@
                             <input id="passLogin" type="password" placeholder="*******" class="form-control" />
                         </div>
                         <div class="col-4">
-                            <button class="btn btn-success">Ingresar</button>
+                            <button type="submit" class="btn btn-success">Ingresar</button>
                         </div>
                     </div>
                 </form>
