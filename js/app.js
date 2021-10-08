@@ -4,20 +4,6 @@ $(function() {
     var template = '';
     var alert = '';
 
-    function prevent(evt) {
-        evt.preventDefault();
-    }
-
-    function validationInput(elm, message) {
-        var clas_s = $(elm).parent();
-        $(elm).addClass('style_alert_focus');
-        alert = `
-            <p class="alert style_alert_message" >${message}</p>
-        `;
-
-        $(clas_s).append(alert);
-    }
-
     
     $('#form_r1').submit((evt) => {
         prevent(evt);
@@ -152,5 +138,15 @@ $(function() {
             .fail((Error) => {
                 console.log(Error);
             })
+    })
+
+    $(document).on('keyup', '.only_letters', (evt) => {
+        var elm = $(document).find('.only_letters').focus()[0];
+        var value = $(elm).val();
+        if(validDataInput(value) == false) {
+            $(elm).val('');
+        } else {
+            console.log(true);
+        }
     })
 })

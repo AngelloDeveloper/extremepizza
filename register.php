@@ -34,6 +34,7 @@
                                 <input id="name" type="text" 
                                     placeholder="Nombre"
                                     class="form-control mb-2"
+                                    onkeypress="return ValidaSoloLetras(event)"
                                     required 
                                 />
                             </div>
@@ -42,6 +43,7 @@
                                 <input id="lastname" type="text" 
                                     placeholder="Apellido"
                                     class="form-control mb-2"
+                                    onkeypress="return ValidaSoloLetras(event)"
                                     required 
                                 />
                             </div>
@@ -50,6 +52,7 @@
                                 <input id="cedula" type="number" 
                                     placeholder="Cedula"
                                     class="form-control mb-2"
+                                    onkeypress="ValidaSoloNumeros()"
                                     required 
                                 />
                             </div>
@@ -78,6 +81,7 @@
                                     <input id="number" type="number" 
                                         placeholder="#"
                                         class="form-control mb-2" 
+                                        onkeypress="ValidaSoloNumeros()"
                                         required
                                     />
                                 </div>
