@@ -14,7 +14,7 @@ function async_query(file, async, data, type) {
         if(parse['STATUS'] == 'ok') {
             deferred.resolve(response);
         } else {
-            deferred.reject(['ERROR']);
+            deferred.reject(parse['ERROR_DATA']);
         }
     })
 

@@ -1,3 +1,8 @@
+
+<?php 
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -23,13 +28,14 @@
             
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
+                <li class="nav-item mt-2"><?= $_SESSION['user']?></li>
                 <li class="nav-item dropdown">
                     <a style="color: white;" class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul style="color:white;" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#!">configuracion</a></li>
                         <li><a class="dropdown-item" href="#!">acitivad y logs</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">cerrar sesión</a></li>
+                        <li><a class="dropdown-item" href="async/async_user.php?type=log_out">cerrar sesión</a></li>
                     </ul>
                 </li>
             </ul>
