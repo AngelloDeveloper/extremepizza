@@ -3,6 +3,7 @@ $(function() {
     var data = {};
     var template = '';
     var alert = '';
+    var swicth = '';
 
     
     $('#form_r1').submit((evt) => {
@@ -148,5 +149,100 @@ $(function() {
         } else {
             console.log(true);
         }
+    })
+
+    $(document).on('click', '.address', function(response) {
+        var elm = $(this)[0];
+        var address = $(elm).data('address');
+        var description = $(elm).data('description');
+        console.log(address);
+        $('#item_menu').html(description+'/');
+        $('#render_modules').load(address);
+    })
+
+
+    //manejadores de modal
+    $(document).on('click', '.modal_despliegue', function(evt) {
+        var elm = $(this)[0];
+        var target = $(elm).data('target');
+        var title = $(elm).data('menu');
+        var descripcion = $(elm).data('descripcion');
+        var img = $(elm).data('img');
+
+        $(document).find('#title').html(title);
+        $(document).find('#descripcion').html(descripcion);
+        $(document).find('#img').attr('src', img);
+
+        $('#'+target).modal('show');
+    })
+    $(document).on('click', '.close_modal', function(response) {
+        var elm = $(this)[0];
+        var close = $(elm).data('close');
+
+        $('#'+close).modal('hide');
+    })
+
+    //nuevo pedido
+    /*$(document).on('click', '.newOrden', function(evt) {
+        var elm = $(this)[0];
+        var idmenu = $(elm).data('idmenu');
+
+        $('#render_modules').load('modules/newOrden.php?orden='+idmenu);
+    })*/
+
+    $(document).on('click', '.form-check-input', function(evt) {
+        var elm = $(this)[0];
+        if($(elm).prop('checked') == true) {
+            var body = $(elm).parent().parent().parent().parent().parent().parent().parent()[0];
+            $(body).css({
+                'background-color' : '#0D8D1D',
+                'color' :  'white'
+            });
+            $(body).find('.modal_despliegue').css({'color' : 'white'});
+
+            template = `
+                <center>
+                    <button id="next" class="btn" style="color:white; background-color:#0D8D1D;">
+                        Continuar
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                </center>
+            `;
+
+            $(document).find('#aux').html(template);
+        } else {
+            var body = $(elm).parent().parent().parent().parent().parent().parent().parent()[0];
+            $(body).css({
+                'background-color' : '#fff',
+                'color' :  '#000'
+            });
+            $(body).find('.modal_despliegue').css({'color' : '#2CD041'});
+
+            var cheks = $('.form-check-input');
+            $.each(cheks, function(index, value) {
+                if($(value).prop('checked') == true) {
+                    swicth = true;
+                    return false;
+                } else {
+                    swicth = false;
+                }
+            });
+
+            if(swicth == false) {
+                $(document).find('#aux').html('');
+            }
+        }
+    })
+
+    $(document).on('click', '#next', function(evt) {
+        var arrData = [];
+        var cheks = $('.form-check-input');
+        $.each(cheks, function(index, value) {
+            if($(value).prop('checked') == true) {
+                arrData.push($(value).data('idmenu'));
+            }
+        });
+
+        $('#render_modules').load('modules/newOrden.php', {'orden': arrData});
     })
 })
