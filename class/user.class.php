@@ -153,7 +153,8 @@
                 users.user as user,
                 users.imagen as imagen,
                 users.privilegios as privilegios,
-                users.status as status
+                users.status as status,
+                users.id_type_user as userType
             FROM 
                 users 
                 LEFT JOIN cliente ON users.id = cliente.id_user

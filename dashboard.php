@@ -1,6 +1,13 @@
 
 <?php 
     session_start();
+
+    require('class/conexion.class.php');
+    require('class/menu_dashboard.class.php');
+
+    //objetos
+    $objMenuDashboard = new menu_dashboard();
+    $arrMenu = $objMenuDashboard->getMenu();
 ?>
 
 <!DOCTYPE html>
@@ -46,11 +53,16 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Inicio</div>
-                            <a class="nav-link" href="index.html">
-                                <div class="sb-nav-link-icon"><i style="color:white;" class="fas fa-tachometer-alt"></i></div>
-                                <span style="color:white;">Inicio</span>
-                            </a>
-                            <div class="sb-sidenav-menu-heading">Modulos</div>
+                            <?php foreach($arrMenu as $item) { ?>
+                                <?php if(in_array($_SESSION['userType'],json_decode($item['user_view']))) { ?>
+                                    <a class="nav-link" href="<?= $item['address'] ?>">
+                                        <div class="sb-nav-link-icon"><i style="color:white;" class="<?= $item['icon'] ?>"></i></div>
+                                        <span style="color:white;"><?= $item['descripcion'] ?></span>
+                                    </a>
+                               <?php } ?>
+                            <?php } ?>
+                            
+                            <!--<div class="sb-sidenav-menu-heading">Modulos</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i style="color:white;" class="fas fa-columns"></i></div>
                                     <span style="color:white;">tablas maestras</span>
@@ -81,11 +93,9 @@
                                         </nav>
                                     </div>
                                 </nav>
-                            </div>
-                            
+                            </div>-->
                         </div>
                     </div>
-                    
                 </nav>
             </div>
             <div id="layoutSidenav_content">
