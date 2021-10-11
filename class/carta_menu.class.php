@@ -28,5 +28,15 @@
             
             return $row;
         }
+
+        public function getAllPresentacion() {
+            $this->sql = "SELECT * FROM presentacion";
+            $this->query = mysqli_query($this->con, $this->sql);
+            while($row = mysqli_fetch_assoc($this->query)) {
+                $rows[] = $row;
+            }
+
+            return $rows;
+        }
     }
 ?>

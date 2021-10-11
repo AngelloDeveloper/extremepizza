@@ -117,6 +117,7 @@
                             <div class="col-12" >
                                 <div id="item_menu" class="alert alert-warning" role="alert">
                                     Inicio/
+                                    
                                 </div>
                             </div>
                         </div>

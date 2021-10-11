@@ -33,7 +33,7 @@
 </div>
 
 <div class="card mt-4">
-    <div class="card-body" style="background-color: #EDEDED;">
+    <div class="card-body" style="background-color: #EDEDED; padding: 30px 50px;">
         
         <div class="row">
             <?php foreach($arrCartaMenu as $menu) { ?>

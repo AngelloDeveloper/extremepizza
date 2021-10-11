@@ -4,6 +4,7 @@ $(function() {
     var template = '';
     var alert = '';
     var swicth = '';
+    var acum = '';
 
     
     $('#form_r1').submit((evt) => {
@@ -245,4 +246,71 @@ $(function() {
 
         $('#render_modules').load('modules/newOrden.php', {'orden': arrData});
     })
+
+    $(document).on('keyup', '.cantidad', function(evt) {
+        var elm = $(this)[0];
+        var elm_total = $(elm).parent().parent().parent().parent().find('.total')[0]; 
+        var elm_presentacion = $(elm).parent().parent().parent().next().find('.presentacion')[0];
+        console.log(elm_presentacion);
+        var presentacion = $(elm_presentacion).val();
+        console.log(presentacion);
+        var arrData = presentacion.split(',');
+        const data = {
+            id: arrData[0],
+            valor: arrData[1]
+        };
+        var cantidad = $(document).find(elm).val();
+        var elm_costo_cantidad = $(document).find(elm).next().find('.costo_cantidad')[0];
+        var precio = $(elm_costo_cantidad).data('precio');
+
+        $(document).find(elm_costo_cantidad).html((cantidad * precio));
+        $(elm_total).val(((cantidad * precio)+parseInt(data.valor)));
+    })
+
+    $(document).on('change', '.presentacion', function(evt) {
+        var elm = $(this)[0];
+        var elm_total = $(elm).parent().parent().parent().find('.total')[0];
+        var elm_cantidad = $(elm).parent().parent().prev().find('.cantidad')[0];
+        var cantidad = $(elm_cantidad).val();
+        var elm_costo_cantidad = $(document).find(elm_cantidad).next().find('.costo_cantidad')[0];
+        var precio = $(elm_costo_cantidad).data('precio');
+        var stringValue = $(elm).val();
+        var arrData = stringValue.split(',');
+        const data = {
+            id: arrData[0],
+            valor: arrData[1]
+        };
+        var valor_presentacion = $(elm).next().find('.valor_presentacion');
+        $(valor_presentacion).html(data.valor);
+        $(elm_total).val(((cantidad * precio)+parseInt(data.valor)));
+    })
+
+    $(document).on('click', '#finish', function(evt) {
+        var valid_presentation  = $(document).find('.presentacion');
+        var valid_cantidad      = $(document).find('.cantidad');
+        swicth = false;
+
+        $.each(valid_presentation, function(index, value) {
+            if($(value).val() == '' || $(value).val() == null || $(value).val() == '0,0') {
+                $('#validation_modal').modal('show');
+                swicth = true;
+                return false;
+            }
+        });
+
+        $.each(valid_cantidad, function(index, value) {
+            if($(value).val() == '' || $(value).val() == null) {
+                $('#validation_modal').modal('show');
+                swicth = true;
+                return false;
+            }
+        });
+
+        if(swicth = false) {
+            
+        }
+
+    })
+
+    
 })
