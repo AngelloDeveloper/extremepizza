@@ -4,7 +4,7 @@
     require('class/conexion.class.php');
     require('class/menu_dashboard.class.php');
 
-    if($_SESSION) {
+    if(!$_SESSION) {
         header('Location: index.php');
     }
 
