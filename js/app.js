@@ -6,6 +6,8 @@ $(function() {
     var swicth = '';
     var acum = '';
 
+    console.log('este es un test');
+
     
     $('#form_r1').submit((evt) => {
         prevent(evt);
