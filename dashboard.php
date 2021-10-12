@@ -4,6 +4,10 @@
     require('class/conexion.class.php');
     require('class/menu_dashboard.class.php');
 
+    if($_SESSION) {
+        header('Location: index.php');
+    }
+
     //objetos
     $objMenuDashboard = new menu_dashboard();
     $arrMenu = $objMenuDashboard->getMenu();
