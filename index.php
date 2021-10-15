@@ -1,6 +1,8 @@
 <?php 
     include('common/head.php');
 ?>
+<?php echo 'hola'  ?>
+
     <video class="bg-video" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"><source src="assets/mp4/bg2.mp4" type="video/mp4" /></video>
     <div class="masthead">
         <div class="masthead-content text-white">
