@@ -77,7 +77,6 @@ $(function() {
             alert('password no coincide');
         }
 
-        console.log(data);
         async_query('async/', 'async_user.php', data, 'validation_data')
             .then((response) => {
                 async_query('async/', 'async_user.php', data, 'reg_user')
@@ -112,7 +111,6 @@ $(function() {
                     })
             }) 
             .fail((Error_data) => {
-                console.log(Error_data);
                 $(document).find($('#'+Error_data)).removeClass('style_alert');
                 $(document).find('.alert').remove();
                 validationInput($('#'+Error_data), 'El dato ya fue registrado');
@@ -133,9 +131,7 @@ $(function() {
         async_query('async/', 'async_user.php', data, 'login_user')
             .then((response) => {
                 var parse = $.parseJSON(response);
-                console.log(parse);
                 if(parse['STATUS'] == 'ok') {
-                    console.log(response);
                     window.location.replace('dashboard.php');
                 }
             })
@@ -184,14 +180,6 @@ $(function() {
 
         $('#'+close).modal('hide');
     })
-
-    //nuevo pedido
-    /*$(document).on('click', '.newOrden', function(evt) {
-        var elm = $(this)[0];
-        var idmenu = $(elm).data('idmenu');
-
-        $('#render_modules').load('modules/newOrden.php?orden='+idmenu);
-    })*/
 
     $(document).on('click', '.form-check-input', function(evt) {
         var elm = $(this)[0];
@@ -289,29 +277,31 @@ $(function() {
     })
 
     $(document).on('click', '#finish', function(evt) {
-        var valid_presentation  = $(document).find('.presentacion');
-        var valid_cantidad      = $(document).find('.cantidad');
-        swicth = false;
+       var arrForm = $('.form_pedido');
+       var arrData = [];
 
-        $.each(valid_presentation, function(index, value) {
-            if($(value).val() == '' || $(value).val() == null || $(value).val() == '0,0') {
-                $('#validation_modal').modal('show');
-                swicth = true;
-                return false;
-            }
-        });
+       $.each(arrForm, function(index, value) {
+         var form = arrForm[index];
+         var objData = {
+            cantidad : '',
+            presentacion : '',
+            total: ''
+        };
 
-        $.each(valid_cantidad, function(index, value) {
-            if($(value).val() == '' || $(value).val() == null) {
-                $('#validation_modal').modal('show');
-                swicth = true;
-                return false;
-            }
-        });
+         objData.cantidad = $(form).find('.cantidad').val();
+         objData.presentacion = $(form).find('.presentacion').val();
+         objData.total = $(form).find('.total').val();
 
-        if(swicth = false) {
-            
-        }
+         arrData.push(objData);
+       });
+
+       async_query('async/', 'async_pedido.php', arrData, 'setPedido')
+            .then((response) => {
+
+            })
+            .fail((Error) => {
+                console.log(Error);
+            })
 
     })
 

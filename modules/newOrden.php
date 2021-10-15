@@ -54,7 +54,7 @@
                 <div class="col-6">
                     <h2 class="text-left mt-3"><?= $pedido['menu'] ?></h2>
                     <p class="text-left"><?= $pedido['descripcion'] ?></p>
-                    <form id="form_orden">
+                    <form class="form_pedido">
                         <div class="row">
                             <div class="col-md-4">
                                 <label>Cantidad</label>
@@ -65,7 +65,7 @@
                                 </span>
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input id="cantidad" 
+                                        <input 
                                             type="text" 
                                             placeholder="0"
                                             onkeypress="ValidaSoloNumeros()" 
@@ -91,7 +91,7 @@
                                     <b>Precio</b>
                                 </span>
                                 <div class="input-group mb-3">
-                                    <select id="presentacion" class="custom-select form-control presentacion">
+                                    <select class="custom-select form-control presentacion">
                                         <option value="0,0">Seleccionar</option>
                                         <?php foreach($arrPresentacion as $presentacion) {  ?>
                                             <option value="<?= $presentacion['id_presentacion'].','.$presentacion['valor_agregado']?>"><?=$presentacion['presentacion']?></option> 

@@ -63,7 +63,7 @@
                                         <div class="form-group">
                                             <center>
                                                 <div class="form-check mb-2 mr-sm-2">
-                                                    <input data-idmenu="<?= $menu['id_menu'] ?>" class="form-check-input" type="checkbox" id="inlineFormCheck" style="position:relative; left:20px;"/>
+                                                    <input data-idmenu="<?= $menu['id_menu'] ?>" class="form-check-input" type="checkbox" id="inlineFormCheck" style="position:relative; left:20px; padding:10px; background-color: silver;"/>
                                                 </div>
                                             </center>
                                         </div>
