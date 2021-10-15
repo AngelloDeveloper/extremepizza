@@ -264,8 +264,8 @@ $(function() {
         var cantidad = $(document).find(elm).val();
         var elm_costo_cantidad = $(document).find(elm).next().find('.costo_cantidad')[0];
         var precio = $(elm_costo_cantidad).data('precio');
-
-        $(document).find(elm_costo_cantidad).html((cantidad * precio));
+        template = `<b>${(cantidad * precio)}</b>`;
+        $(document).find(elm_costo_cantidad).html(template);
         $(elm_total).val(((cantidad * precio)+parseInt(data.valor)));
     })
 
@@ -283,7 +283,8 @@ $(function() {
             valor: arrData[1]
         };
         var valor_presentacion = $(elm).next().find('.valor_presentacion');
-        $(valor_presentacion).html(data.valor);
+        template = `<b>${data.valor}</b>`;
+        $(valor_presentacion).html(template);
         $(elm_total).val(((cantidad * precio)+parseInt(data.valor)));
     })
 

@@ -38,7 +38,7 @@
         <div class="row">
             <?php foreach($arrCartaMenu as $menu) { ?>
                 <div class="col-md-6 col-lg-3">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card mb-2" style="width: 18rem;">
                         <img src="<?= $menu['imagen'] ?>" class="card-img-top" height="200" alt="...">
                         <div class="card-body">
                             <div clarr="row">
