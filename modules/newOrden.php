@@ -3,10 +3,17 @@
     require('../class/conexion.class.php');
     require('../class/carta_menu.class.php');
 
-    if(!$_REQUEST) {
+    /*if(!$_REQUEST) {
         header('Location: ../dashboard.php');
     } else {
         $idMenu = $_REQUEST;
+    }*/
+
+    if($_REQUEST) {
+        $idMenu = $_REQUEST;
+        $_SESSION['newOrden'] = $_REQUEST;
+    } else if(!empty($_SESSION['newOrden'])) {
+        $idMenu = $_SESSION['newOrden'];
     }
 
     //objetos
@@ -39,10 +46,15 @@
 </div>
 
 <div class="row">
-    <div class="col-12">
+    <div class="col-6">
+        <h3>Pedido</h3>
+    </div>
+    <div class="col-6">
         <button style="float:right;" class="btn btn-secondary address" data-description="Pedido" data-address="modules/pedidos.php">Volver</button>
     </div>
 </div>
+
+<hr />
 
 <div class="card mt-4">
     <div class="card-body" style="background-color: #EDEDED; padding: 30px 50px;">
@@ -121,6 +133,7 @@
                                 </div>
                             </div>
                         </div>
+                        <input type="hidden" class="idmenu" value="<?= $pedido['id_menu'] ?>" />
                     </form>
                 </div>
             </div>

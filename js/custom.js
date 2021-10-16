@@ -7,8 +7,10 @@ function async_query(file, async, data, type) {
         type: type
     };
 
-    $.post(path, objData, function(response) {
+    console.log(objData);
 
+    $.post(path, objData, function(response) {
+        console.log(response);
         const parse = $.parseJSON(response);
         console.log(parse);
 
@@ -61,4 +63,13 @@ function ValidaSoloNumeros() {
     if ((event.keyCode < 48) || (event.keyCode > 57)) {
         event.returnValue = false;
     }   
+}
+
+function toObject(arr) {
+    var rv = {};
+    for (var i = 0; i < arr.length; ++i) {
+        rv[i] = arr[i];
+    }
+      
+    return rv;
 }

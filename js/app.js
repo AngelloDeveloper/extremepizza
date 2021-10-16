@@ -1,6 +1,7 @@
 $(function() {
 
     var data = {};
+    var arrData = [];
     var template = '';
     var alert = '';
     var swicth = '';
@@ -278,7 +279,6 @@ $(function() {
 
     $(document).on('click', '#finish', function(evt) {
        var arrForm = $('.form_pedido');
-       var arrData = [];
 
        $.each(arrForm, function(index, value) {
          var form = arrForm[index];
@@ -289,19 +289,25 @@ $(function() {
         };
 
          objData.cantidad = $(form).find('.cantidad').val();
-         objData.presentacion = $(form).find('.presentacion').val();
+         objData.presentacion = $(form).find('.presentacion').val().split(',')[0];
          objData.total = $(form).find('.total').val();
+         objData.idmenu = $(form).find('.idmenu').val();
 
          arrData.push(objData);
        });
 
-       async_query('async/', 'async_pedido.php', arrData, 'setPedido')
-            .then((response) => {
+       var data = toObject(arrData);
+       console.log(data);
 
+       $('#render_modules').load('modules/divisaSelect.php', {'data': data});
+
+       /*async_query('async/', 'async_pedido.php', data, 'setPedido')
+            .then((response) => {
+                console.log(response);
             })
             .fail((Error) => {
                 console.log(Error);
-            })
+            })*/
 
     })
 

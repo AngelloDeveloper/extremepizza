@@ -117,14 +117,14 @@
                 <main>
                     <div class="container-fluid px-4 mt-4">
                         
-                        <div class="row">
+                        <!--<div class="row">
                             <div class="col-12" >
                                 <div id="item_menu" class="alert alert-warning" role="alert">
                                     Inicio/
                                     
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="container-fluid px-4" id="render_modules">
                         <h1 class="mt-4 text-center">ExtremePizza</h1>
