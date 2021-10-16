@@ -1,7 +1,6 @@
 $(function() {
 
     var data = {};
-    var arrData = [];
     var template = '';
     var alert = '';
     var swicth = '';
@@ -279,7 +278,7 @@ $(function() {
 
     $(document).on('click', '#finish', function(evt) {
        var arrForm = $('.form_pedido');
-
+       var arrData = [];
        $.each(arrForm, function(index, value) {
          var form = arrForm[index];
          var objData = {
@@ -300,14 +299,6 @@ $(function() {
        console.log(data);
 
        $('#render_modules').load('modules/divisaSelect.php', {'data': data});
-
-       /*async_query('async/', 'async_pedido.php', data, 'setPedido')
-            .then((response) => {
-                console.log(response);
-            })
-            .fail((Error) => {
-                console.log(Error);
-            })*/
 
     })
 

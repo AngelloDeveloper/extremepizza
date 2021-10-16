@@ -47,7 +47,7 @@
 
 <div class="row">
     <div class="col-6">
-        <h3>Pedido</h3>
+        <h3>Cotización</h3>
     </div>
     <div class="col-6">
         <button style="float:right;" class="btn btn-secondary address" data-description="Pedido" data-address="modules/pedidos.php">Volver</button>

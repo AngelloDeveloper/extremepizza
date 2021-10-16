@@ -41,6 +41,7 @@
 <div class="card mt-4">
     <div class="card-body" style="background-color: #EDEDED; padding: 30px 50px;">
         <div class="row">
+            <input type="hidden" id="data_pedido" value="<?=$arrData['data']?>" /> <!--codificacion del array-->
             <?php foreach($arrDivisas as $divisa) { ?>
                 <div class="col-4">
                     <div class="card divisa" data-divisa="<?= $divisa['id_divisa'] ?>">
