@@ -328,6 +328,12 @@ $(function() {
             .then((response) => {
                 console.log(response);
                 console.log('orden creada');
+                $(document).find('#modalSuccess').find('#title').html('Proceso Exitoso');
+                $(document).find('#modalSuccess').find('#descripcion').html('La orden de los pedidos se realizó con exito');
+                $(document).find('#modalSuccess').modal('show');
+                setTimeout(() => {
+                    window.location.replace('dashboard.php');
+                },2300);
             })
             .fail((Error) => {
                 console.log(Error);
