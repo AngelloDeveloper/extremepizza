@@ -1,47 +1,83 @@
 <?php
     class Pedido extends Conexion {
         //properties
+        private $divisa;
+        private $data;
+        private $con;
+        private $iduser;
+        private $idmenu;
+        private $id_presentacion;
+        private $id_user;
+        private $precio_total;
+        private $cantidad;
+        private $arrPedidos;
+        private $arrPedidosText;
+        private $idorden;
         //methods
 
         public function __construct($arrData='') {
-            $this->data = !empty($arrData['data']) ? $arrData['data'] : '';
+            $this->data = !empty($arrData['pedidos']) ? $arrData['pedidos'] : '';
+            $this->divisa = !empty($arrData['divisa']) ? $arrData['divisa'] : '';
+            $this->iduser = !empty($arrData['iduser']) ? $arrData['iduser'] : '';
             $this->con  = $this->conexion();
         }
 
-        public function setPedido() {
-            foreach($this->data as $data) {
-               
-            
-                //$this->query  = mysqli_query($this->con, $this->sql);
-                //$this->result = mysqli_fetch_assoc($this->query);
+        public function setPedido($idOrden) {
 
-                /*his->sql = "INSERT INTO 
-                    pedidos (
-                        fecha, 
-                        domicilio, 
+            $this->idorden = $idOrden;
+
+            foreach($this->data as $index => $pedido) {
+
+                $this->idmenu = $pedido['idmenu'];
+                $this->id_presentacion = $pedido['presentacion'];
+                $this->precio_total = $pedido['total'];
+                $this->cantidad = $pedido['cantidad'];
+                
+                $this->sql = "INSERT INTO 
+                    pedidos ( 
                         id_menu, 
-                        id_presentacion, 
-                        id_user, 
-                        precio_total,
+                        id_presentacion,  
+                        precio_total, 
+                        divisa,
                         cantidad,
-                        divisa
+                        id_orden
                     ) 
-                    VALUES (
-                        NOW(),
-                        $data['']
-                    )";*/
+                VALUES (
+                    '$this->idmenu',
+                    '$this->id_presentacion',
+                    '$this->precio_total',
+                    '$this->divisa',
+                    '$this->cantidad',
+                    '$this->idorden'
+                )";
 
-                //$this->query    = mysqli_query($this->con, $this->sql);
+                $this->query = mysqli_query($this->con, $this->sql);
+            }
+
+            if($this->query) {
+                return [
+                    'STATUS' => 'ok'
+                ];
             }
         }
 
-        /*public getPedidos() {
-            $this->sql = "SELECT 
-                *
-            FROM 
-                carta_menu 
-                LEFT JOIN cliente ON users.id = cliente.id_user
-            WHERE user = '$this->users' AND password = '$this->pass'";
-        }*/
+        public function setOrden() {
+            $this->sql = "INSERT INTO 
+                orden ( 
+                    fecha, 
+                    id_user
+                ) 
+            VALUES (
+                NOW(),
+                '$this->iduser'
+            )";
+
+            $this->query = mysqli_query($this->con, $this->sql);
+            $this->idorden = mysqli_insert_id($this->con);
+
+            return $this->idorden;
+        }
+
+       
     }
 ?>

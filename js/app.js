@@ -193,7 +193,7 @@ $(function() {
 
             template = `
                 <center>
-                    <button id="next" class="btn" style="color:white; background-color:#0D8D1D;">
+                    <button id="next" class="btn btn btn-success btn-lg">
                         Continuar
                         <i class="fa fa-arrow-right" aria-hidden="true"></i>
                     </button>
@@ -279,6 +279,7 @@ $(function() {
     $(document).on('click', '#finish', function(evt) {
        var arrForm = $('.form_pedido');
        var arrData = [];
+       swicth = false;
        $.each(arrForm, function(index, value) {
          var form = arrForm[index];
          var objData = {
@@ -292,14 +293,46 @@ $(function() {
          objData.total = $(form).find('.total').val();
          objData.idmenu = $(form).find('.idmenu').val();
 
+         if(objData.presentacion == 0) {
+             $('#validation_modal').modal('show');
+             swicth = true;
+         } else {
+            $('#validation_modal').modal('hide');
+            swicth = false;
+         }
+
          arrData.push(objData);
        });
 
        var data = toObject(arrData);
        console.log(data);
 
-       $('#render_modules').load('modules/divisaSelect.php', {'data': data});
+       if(swicth == false) {
+            $('#render_modules').load('modules/divisaSelect.php', {'data': data});
+       }
 
+    })
+
+    $(document).on('click', '.divisa', function(evt) {
+        var elm = $(this)[0];
+        var divisa = $(elm).data('divisa');
+        var elmDataPedido = $(elm).parent().parent().parent().find('#data_pedido')[0];
+        var arrDataPedido = $(elmDataPedido).val();
+
+        const data =  {
+            pedido: $.parseJSON(arrDataPedido),
+            divisa: divisa
+        };
+
+        async_query('async/', 'async_pedido.php', data, 'setPedido')
+            .then((response) => {
+                console.log(response);
+                console.log('orden creada');
+            })
+            .fail((Error) => {
+                console.log(Error);
+            })
+            
     })
 
     

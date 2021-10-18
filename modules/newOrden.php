@@ -46,10 +46,21 @@
 </div>
 
 <div class="row">
-    <div class="col-6">
+    <div class="col-4">
         <h3>Cotización</h3>
     </div>
-    <div class="col-6">
+    <div class="col-4 text-center">
+        <span title="Pedido" style="margin-right:50px; background-color: #39B332; color: white; padding:15px 20px; border-radius:40px; font-size:20px;">
+            <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+        </span>
+        <span title="Calculos" style="margin-right:50px; background-color: silver; color: white; padding:15px 20px; border-radius:40px;  border: 2px solid #663477; font-size:20px; ">
+            <i class="fa fa-calculator" aria-hidden="true"></i>
+        </span>
+        <span title="Pago" style="margin-right:50px; background-color: silver; color: white; padding:15px 20px; border-radius:40px; font-size:20px;">
+            <i class="fa fa-university" aria-hidden="true"></i>
+        </span>
+    </div>
+    <div class="col-4">
         <button style="float:right;" class="btn btn-secondary address" data-description="Pedido" data-address="modules/pedidos.php">Volver</button>
     </div>
 </div>
@@ -142,7 +153,10 @@
         <div class="row">
             <div class="col-12">
                 <center>
-                    <button id="finish" class="btn btn-success btn-lg">Finalizar</button>
+                    <button id="finish" class="btn btn-success btn-lg">
+                        Continuar
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    </button>
                 </center>
             </div>
         </div>

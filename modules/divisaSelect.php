@@ -28,10 +28,21 @@
 </style>
 
 <div class="row">
-    <div class="col-6">
+    <div class="col-4">
         <h3>Divisa a Pagar</h3>
     </div>
-    <div class="col-6">
+    <div class="col-4 text-center">
+        <span title="Pedido" style="margin-right:50px; background-color: #39B332; color: white; padding:15px 20px; border-radius:40px; font-size:20px">
+            <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+        </span>
+        <span title="Calculos" style="margin-right:50px; background-color: #39B332; color: white; padding:15px 20px; border-radius:40px; font-size:20px;">
+            <i class="fa fa-calculator" aria-hidden="true"></i>
+        </span>
+        <span title="Pago" style="margin-right:50px; background-color: silver; color: white; padding:15px 20px; border-radius:40px; border: 2px solid #663477; ">
+            <i class="fa fa-university" aria-hidden="true"></i>
+        </span>
+    </div>
+    <div class="col-4">
         <button style="float:right;" class="btn btn-secondary address" data-description="Pedido" data-address="modules/newOrden.php">Volver</button>
     </div>
 </div>
@@ -41,7 +52,7 @@
 <div class="card mt-4">
     <div class="card-body" style="background-color: #EDEDED; padding: 30px 50px;">
         <div class="row">
-            <input type="hidden" id="data_pedido" value="<?=$arrData['data']?>" /> <!--codificacion del array-->
+            <input type="hidden" id="data_pedido" value=<?= json_encode($arrData['data'], true)?> /> <!--codificacion del array-->
             <?php foreach($arrDivisas as $divisa) { ?>
                 <div class="col-4">
                     <div class="card divisa" data-divisa="<?= $divisa['id_divisa'] ?>">
