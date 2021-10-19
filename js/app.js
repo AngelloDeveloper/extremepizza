@@ -298,7 +298,6 @@ $(function() {
              swicth = true;
          } else {
             $('#validation_modal').modal('hide');
-            swicth = false;
          }
 
          arrData.push(objData);
@@ -311,6 +310,7 @@ $(function() {
             $('#render_modules').load('modules/divisaSelect.php', {'data': data});
        }
 
+       swicth = '';
     })
 
     $(document).on('click', '.divisa', function(evt) {
@@ -327,13 +327,23 @@ $(function() {
         async_query('async/', 'async_pedido.php', data, 'setPedido')
             .then((response) => {
                 console.log(response);
+                var parse = $.parseJSON(response);
+                template = `
+                    <a href="reports/voucherOrden.php?idorden=${parse.RESULT}">
+                        <p class="text-center">
+                            Descargar Voucher
+                            <i class="fa fa-download" aria-hidden="true"></i>
+                        </p>
+                    </a>
+                `;
                 console.log('orden creada');
                 $(document).find('#modalSuccess').find('#title').html('Proceso Exitoso');
                 $(document).find('#modalSuccess').find('#descripcion').html('La orden de los pedidos se realizó con exito');
+                $(document).find('#modalSuccess').find('#download_voucher').html(template);
                 $(document).find('#modalSuccess').modal('show');
-                setTimeout(() => {
+                /*setTimeout(() => {
                     window.location.replace('dashboard.php');
-                },2300);
+                },2300);*/
             })
             .fail((Error) => {
                 console.log(Error);

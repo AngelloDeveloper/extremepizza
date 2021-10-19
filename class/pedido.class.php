@@ -56,7 +56,8 @@
 
             if($this->query) {
                 return [
-                    'STATUS' => 'ok'
+                    'STATUS' => 'ok',
+                    'RESULT' => $this->idorden
                 ];
             }
         }

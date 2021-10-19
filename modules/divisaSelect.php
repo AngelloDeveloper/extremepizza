@@ -38,8 +38,14 @@
                 <div class="row">
                     <div class="col-12">
                         <h4 id="descripcion" class="text-center text-success"></h4>
+                        <div id="download_voucher"></div>
                     </div>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <center>
+                    <button class="btn btn-success">Finalizar</button>
+                </center>
             </div>
         </div>
     </div>

@@ -1,0 +1,41 @@
+<?php return array(
+    'root' => array(
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'type' => 'library',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'reference' => 'dd03d60cbb65db3b0714a563e619335e0736b1fa',
+        'name' => '__root__',
+        'dev' => true,
+    ),
+    'versions' => array(
+        '__root__' => array(
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'reference' => 'dd03d60cbb65db3b0714a563e619335e0736b1fa',
+            'dev_requirement' => false,
+        ),
+        'spipu/html2pdf' => array(
+            'pretty_version' => 'v5.2.2',
+            'version' => '5.2.2.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../spipu/html2pdf',
+            'aliases' => array(),
+            'reference' => 'e6d8ca22347b6691bb8c2652212b1be2c89b3eff',
+            'dev_requirement' => false,
+        ),
+        'tecnickcom/tcpdf' => array(
+            'pretty_version' => '6.4.2',
+            'version' => '6.4.2.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../tecnickcom/tcpdf',
+            'aliases' => array(),
+            'reference' => '172540dcbfdf8dc983bc2fe78feff48ff7ec1c76',
+            'dev_requirement' => false,
+        ),
+    ),
+);
