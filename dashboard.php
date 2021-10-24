@@ -135,11 +135,6 @@
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted">Copyright &copy; ExtremePizza 2021</div>
-                            <div>
-                                <a href="#">Politicas de provacidad</a>
-                                &middot;
-                                <a href="#">Terminos y Condicionados</a>
-                            </div>
                         </div>
                     </div>
                 </footer>

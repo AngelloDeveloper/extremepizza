@@ -79,6 +79,36 @@
             return $this->idorden;
         }
 
+        public function getPedido($idOrden='') {
+            $this->sql = "SELECT 
+                        pedidos.id_pedido as idPedido,
+                        pedidos.cantidad as cantidad,
+                        pedidos.precio_total as precioTotal,
+                        orden.fecha as fecha,
+                        carta_menu.menu as menu,
+                        carta_menu.descripcion as menu_descripcion,
+                        carta_menu.precio as menu_precio,
+                        presentacion.presentacion as presentacion,
+                        presentacion.descripcion as presentacion_descripcion,
+                        presentacion.valor_agregado as presentacion_valor,
+                        divisas.divisa as divisa,
+                        divisas.simbolo as divisa_simbolo
+                    FROM pedidos
+                    LEFT JOIN orden ON pedidos.id_orden = orden.id_orden
+                    LEFT JOIN carta_menu ON pedidos.id_menu = carta_menu.id_menu
+                    LEFT JOIN presentacion ON pedidos.id_presentacion = presentacion.id_presentacion
+                    LEFT JOIN divisas ON pedidos.divisa = divisas.id_divisa
+                    WHERE pedidos.id_orden = {$idOrden}     
+            ";
+
+            $this->query = mysqli_query($this->con, $this->sql);
+            while($row = mysqli_fetch_assoc($this->query)) {
+                $rows[] = $row;
+            }
+
+            return $rows;
+        }
+
        
     }
 ?>

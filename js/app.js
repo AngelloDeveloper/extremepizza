@@ -349,8 +349,12 @@ $(function() {
                 console.log(Error);
             })
         
-        //test
-            
+        //test   
+    })
+
+    $(document).on('click', '#finish_Voucher', function() {
+        //$(document).find('#modalSuccess').hide();
+        window.location.replace('dashboard.php');
     })
 
     
