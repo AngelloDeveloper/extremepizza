@@ -163,9 +163,15 @@
             $this->query  = mysqli_query($this->con, $this->sql);
             $this->result = mysqli_fetch_assoc($this->query);
         
-            if($this->result) {
-                $this->session($this->result);
-                return ['STATUS' => 'ok'];
+            if(!empty($this->result)) {
+                if($this->result['status'] != 0) {
+                    $this->session($this->result);
+                    return ['STATUS' => 'ok'];
+                } else {
+                    return ['STATUS' => 'BLOQUED'];
+                }
+            } else {
+                return ['STATUS' => 'fail'];
             }       
         }
 
@@ -189,6 +195,34 @@
 
         public function encrypt($value=null) {
             return hash('sha256', "1NsT3pD3veL0p3R$" . $value);
+        }
+
+        public function getAllUser() {
+            $this->sql = "SELECT * FROM users";
+            $this->query = mysqli_query($this->con, $this->sql);
+            while($row = mysqli_fetch_assoc($this->query)) {
+                $rows[] = $row;
+            }
+
+            return $rows;
+        }
+
+        public function getUser($id) {
+            $this->sql = "SELECT * FROM users WHERE id = '{$id}'";
+            $this->query = mysqli_query($this->con, $this->sql);
+            while($row = mysqli_fetch_assoc($this->query)) {
+                $rows[] = $row;
+            }
+
+            return $rows;
+        }
+
+        public function editUser() {
+            $this->sql = "UPDATE users SET status = '{$this->status}', id_type_user = '{$this->type_user}' WHERE id = {$this->id_user}";
+            $this->query = mysqli_query($this->con, $this->sql);
+            if($this->query) {
+                return ['STATUS' => 'ok']; 
+            }
         }
     }
 ?>

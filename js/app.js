@@ -119,7 +119,7 @@ $(function() {
 
     //login
     $('#formLogin').submit((evt) => {
-        prevent(evt);
+        evt.preventDefault(evt);
 
         data = {
             user: $('#userLogin').val(),
@@ -131,9 +131,33 @@ $(function() {
         async_query('async/', 'async_user.php', data, 'login_user')
             .then((response) => {
                 var parse = $.parseJSON(response);
+                console.log('testr');
+                console.log(parse);
                 if(parse['STATUS'] == 'ok') {
                     window.location.replace('dashboard.php');
+                } 
+
+                if(parse['STATUS'] == 'fail') {
+                    template = `
+                        <div class="alert alert-warning mt-2" role="alert">
+                            su usuario y/o clave no coinciden
+                        </div>
+                    `;
+                    $(document).find('.alert_nosession').html(template);
                 }
+
+                if(parse['STATUS'] == 'BLOQUED') {
+                    template = `
+                        <div class="alert alert-danger mt-2" role="alert">
+                            Su usuario ha sido bloqueado
+                        </div>
+                    `;
+                    $(document).find('.alert_nosession').html(template);
+                }
+
+                setTimeout(() => {
+                    $(document).find('.alert_nosession').html('');
+                },2500);
             })
             .fail((Error) => {
                 console.log(Error);
@@ -181,7 +205,7 @@ $(function() {
         $('#'+close).modal('hide');
     })
 
-    $(document).on('click', '.form-check-input', function(evt) {
+    $(document).on('click', '.checkMenu', function(evt) {
         var elm = $(this)[0];
         if($(elm).prop('checked') == true) {
             var body = $(elm).parent().parent().parent().parent().parent().parent().parent()[0];
@@ -355,6 +379,54 @@ $(function() {
     $(document).on('click', '#finish_Voucher', function() {
         //$(document).find('#modalSuccess').hide();
         window.location.replace('dashboard.php');
+    })
+
+    $(document).on('click', '#checkStatus', function() {
+        var elm = $(this)[0];
+        template = '';
+        if($(elm).prop('checked') == true) {
+            template = '<span style="padding:2px 6px; color:white; border-radius:20px; background-color:#198754; font-size:15px; margin-left:12px;">Activo</span>';
+            $(document).find('#checkLabel').html(template);
+        } else {
+            template = '<span style="padding:2px 6px; color:white; border-radius:20px; background-color:#dc3545; font-size:15px; margin-left:12px;">Bloqueado</span>';
+            $(document).find('#checkLabel').html(template);
+        }
+    })
+
+    $(document).on('submit', '#form_EditUser', function(evt) {
+        evt.preventDefault();
+        console.log('editar');
+        var status = $(document).find('#form_EditUser').find('#checkStatus').prop('checked') == true ? 1 : 0 ;
+        const data = {
+            type_user: $(document).find('#form_EditUser').find('#type_user').val(),
+            status: status,
+            idUser: $(document).find('#form_EditUser').find('#idUser').val()
+        };
+
+        async_query('async/', 'async_user.php', data, 'editUser')
+            .then((response) => {
+                template = '';
+                console.log(response);
+                var parse = $.parseJSON(response); 
+                console.log(parse);
+                if(parse['STATUS'] == 'ok') {
+                    template = `
+                        <div class="alert alert-success" role="alert">
+                            Se Guardaron los Cambios con exito.
+                        </div>
+                    `;
+                    $(document).find('#alert_success').html(template);
+                    setTimeout(() => {
+                        $(document).find('#alert_success').html('');
+                        $('#render_modules').load('modules/users.php');
+                    },1500);
+                }
+            })
+            .fail((Error) => {
+                console.log(Error);
+            })
+
+        
     })
 
     

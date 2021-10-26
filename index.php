@@ -6,7 +6,7 @@
     <div class="masthead">
         <div class="masthead-content text-white">
             <div class="container-fluid px-4 px-lg-0">
-                <h1 class="mb-4"><span style="font-size: 70px;">E</span>xtreme<span style="font-size: 70px;">Pizza</span></h1>
+                <h1 class="mb-4"><span style="font-size: 70px;">E</span>xtrema<span style="font-size: 70px;">Pizza</span></h1>
                 <p class="mb-5">
                     Que nadie te diga cuanta Pizza Puedes comer !!!
                 </p>
@@ -23,6 +23,7 @@
                         </div>
                     </div>
                 </form>
+                <div class="alert_nosession"></div>
                 <a href="register.php" class="linkRegister mt-2">No estoy registrado</a>
             </div>
         </div>

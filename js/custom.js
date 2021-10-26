@@ -14,7 +14,7 @@ function async_query(file, async, data, type) {
         const parse = $.parseJSON(response);
         console.log(parse);
 
-        if(parse['STATUS'] == 'ok') {
+        if(parse['STATUS'] == 'ok' || parse['STATUS'] == 'BLOQUED' || parse['STATUS'] == 'fail') {
             console.log('aqui');
             deferred.resolve(response);
         } else {

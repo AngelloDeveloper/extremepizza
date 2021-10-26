@@ -56,13 +56,13 @@
         <h3>Divisa a Pagar</h3>
     </div>
     <div class="col-4 text-center">
-        <span title="Pedido" style="margin-right:50px; background-color: #39B332; color: white; padding:15px 20px; border-radius:40px; font-size:20px">
+        <span title="Menú" style="margin-right:50px; background-color: #39B332; color: white; padding:15px 20px; border-radius:40px; font-size:20px">
             <i class="fa fa-shopping-basket" aria-hidden="true"></i>
         </span>
-        <span title="Calculos" style="margin-right:50px; background-color: #39B332; color: white; padding:15px 20px; border-radius:40px; font-size:20px;">
+        <span title="Cotización" style="margin-right:50px; background-color: #39B332; color: white; padding:15px 20px; border-radius:40px; font-size:20px;">
             <i class="fa fa-calculator" aria-hidden="true"></i>
         </span>
-        <span title="Pago" style="margin-right:50px; background-color: silver; color: white; padding:15px 20px; border-radius:40px; border: 2px solid #663477; ">
+        <span title="Divisa a Pagar" style="margin-right:50px; background-color: silver; color: white; padding:15px 20px; border-radius:40px; border: 2px solid #663477; ">
             <i class="fa fa-university" aria-hidden="true"></i>
         </span>
     </div>

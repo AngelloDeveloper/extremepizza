@@ -52,4 +52,15 @@
         $objUser->Logout();
     }
 
+    if(!empty($_REQUEST) && $_REQUEST['type'] == 'editUser') {
+        $objUser = new User([
+            'id_user' => $_REQUEST['data']['idUser'],
+            'type_user' => $_REQUEST['data']['type_user'],
+            'status' => $_REQUEST['data']['status']
+        ]);
+        $result = $objUser->editUser();
+
+        die(json_encode($result));
+    }
+
 ?>
